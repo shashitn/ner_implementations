@@ -30,6 +30,7 @@ def prep_data(file_path):
             df.at[i, 'Word'] = '.'
 
     print("Buliding NER set")
+    last_word = "ner_lstm"
     ner_set = []
     last_word = "ner_lstm"
     for i in range(0, len(df)):
@@ -49,9 +50,9 @@ def prep_data(file_path):
             ner_set.append(df['Word'][i] + " " + df['POS'][i] + " " + df['Tag'][i])
             last_word = df['Word'][i]
 
-        with open('ner_final.eng', mode="w") as outfile:
-            for s in ner_set:
-                outfile.write("%s\n" % s)
+    with open('/content/ner_final.eng', mode="w") as outfile:
+        for s in ner_set:
+            outfile.write("%s\n" % s)
     print("Final set written to " + "/content/ner_final.eng")
 
     return 'ner_final.eng'
